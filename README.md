@@ -1,14 +1,20 @@
 # ToDo Educational Application
 
 <!-- TOC -->
-
 * [ToDo Educational Application](#todo-educational-application)
     * [Objective](#objective)
     * [Description](#description)
     * [Conclusion](#conclusion)
     * [Technical Details](#technical-details)
     * [Step 1. Initial project skeleton and used tools](#step-1-initial-project-skeleton-and-used-tools)
-
+    * [Step 2. Domain and entity modeling](#step-2-domain-and-entity-modeling)
+        * [Entities and Records](#entities-and-records)
+        * [Object-Relational Mapping (ORM)](#object-relational-mapping-orm)
+            * [Pros](#pros)
+            * [Cons](#cons)
+        * [Entities vs Records](#entities-vs-records)
+        * [Key concepts](#key-concepts)
+        * [Conclusion:](#conclusion-1)
 <!-- TOC -->
 
 ## Objective
@@ -60,7 +66,7 @@ The application will be developed using the following technologies:
         * [Spring Web](https://spring.io/guides/gs/serving-web-content/)
       * [Thymeleaf](https://www.thymeleaf.org/)
       * [Lombok](https://projectlombok.org/)
-        * [Junit](https://junit.org/junit5/)
+          * [Junit](https://junit.org/junit5/)
 * IDE [IntelliJ Idea](https://www.jetbrains.com/idea/)
     * [Eclipse](https://www.eclipse.org/)
     * [Spring Tools 4 for Eclipse](https://spring.io/tools)
@@ -71,5 +77,64 @@ The application will be developed using the following technologies:
 * VCS [Git](https://git-scm.com/)
 * [GitHub](https://github.com/)
 
-## Step 2. Domain modeling
+## Step 2. Domain and entity modeling
 
+### Entities and Records
+
+_Entities_ are objects that represent real-world entities, such as customers, products, or orders.
+They have a unique identity and can be stored in a database.
+Records are rows in a database table. They represent a single instance of an entity.
+The main difference between entities and records is that entities are objects,
+while records are rows in a database table.
+Entities have a unique identity, while records do not.
+
+### Object-Relational Mapping (ORM)
+
+Object-relational mapping (ORM) is a technique that allows you to map objects to database tables.
+ORM frameworks provide a way to abstract the details of database access from your application code.
+
+ORM frameworks typically use a data mapper to map objects to records.
+The data mapper is responsible for converting objects to records and vice versa.
+
+ORM frameworks can be a powerful tool for simplifying database access.
+They can make your code more maintainable and efficient.
+
+#### Pros
+
+* Increased productivity - ORM frameworks can automate many of the tasks involved in database access, such as creating
+  and
+  updating records. This can free up your developers to focus on other aspects of your application.
+* Improved maintainability - ORM frameworks can help you to keep your database access code consistent. This can make it
+  easier to maintain your application as it evolves.
+* Increased performance - ORM frameworks can sometimes improve the performance of your database access code. This is
+  because they can take advantage of database-specific optimizations.
+
+#### Cons
+
+* Complexity - ORM frameworks can add complexity to your application code. This is because you need to learn how to use
+  the
+  framework and its associated annotations.
+* Performance - ORM frameworks can sometimes degrade the performance of your database access code. This is because they
+  add
+  a layer of abstraction between your application code and the database.
+
+### Entities vs Records
+
+Entities and records are two different ways of representing data in a database. Entities are objects that represent
+real-world entities, while records are rows in a database table. ORM is a technique that allows you to map objects to
+database tables.
+
+* _Domain modeling_ is the process of defining the objects and relationships that exist in a business domain.
+* _Entity modeling_ is a specific type of domain modeling that is used to represent objects in a database.
+* _JPA_ is a Java API that provides a standard way to interact with databases.
+
+### Key concepts
+
+* _Objects_ - Things that exist in the business domain, such as customers, products, or orders.
+* _Relationships_ - Connections between objects. They can be one-to-one, one-to-many, or many-to-many.
+* _Entities_ - Objects that have a unique identity and that can be stored in a database.
+* _Entity classes_ - Java classes that represent entities. They must be annotated with the `@Entity` annotation.
+
+### Conclusion:
+
+Domain modeling and entity modeling are essential skills for any software developer who works with databases.
