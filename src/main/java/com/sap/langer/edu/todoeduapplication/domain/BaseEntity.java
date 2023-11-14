@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class BaseEntity {
-    private int id;
+    private Long id;
     private LocalDateTime created;
     private LocalDateTime modified;
 }

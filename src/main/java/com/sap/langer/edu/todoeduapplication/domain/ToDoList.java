@@ -1,18 +1,16 @@
 package com.sap.langer.edu.todoeduapplication.domain;
 
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class ToDoTask extends BaseEntity {
+public class ToDoList extends BaseEntity {
     private String title;
-    private String description;
-    private ToDoStatus status;
+    private ToDoListStatus status;
     private LocalDateTime statusChanged;
-    private LocalDateTime scheduled;
-    private ToDoList toDoList;
+    private List<ToDoTask> tasks;
 }
