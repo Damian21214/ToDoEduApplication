@@ -2,19 +2,23 @@
 
 <!-- TOC -->
 * [ToDo Educational Application](#todo-educational-application)
-    * [Objective](#objective)
-    * [Description](#description)
-    * [Conclusion](#conclusion)
-    * [Technical Details](#technical-details)
-    * [Step 1. Initial project skeleton and used tools](#step-1-initial-project-skeleton-and-used-tools)
-    * [Step 2. Domain and entity modeling](#step-2-domain-and-entity-modeling)
-        * [Entities and Records](#entities-and-records)
-        * [Object-Relational Mapping (ORM)](#object-relational-mapping-orm)
-            * [Pros](#pros)
-            * [Cons](#cons)
-        * [Entities vs Records](#entities-vs-records)
-        * [Key concepts](#key-concepts)
-        * [Conclusion:](#conclusion-1)
+  * [Objective](#objective)
+  * [Description](#description)
+  * [Conclusion](#conclusion)
+  * [Technical Details](#technical-details)
+  * [Step 1. Initial project skeleton and used tools](#step-1-initial-project-skeleton-and-used-tools)
+  * [Step 2. Domain and entity modeling](#step-2-domain-and-entity-modeling)
+    * [Entities and Records](#entities-and-records)
+    * [Object-Relational Mapping (ORM)](#object-relational-mapping-orm)
+      * [Pros](#pros)
+      * [Cons](#cons)
+    * [Entities vs Records](#entities-vs-records)
+    * [Key concepts](#key-concepts)
+    * [Conclusion](#conclusion-1)
+  * [Step 3. Repositories](#step-3-repositories)
+    * [Spring Boot Data Repositories**](#spring-boot-data-repositories)
+    * [How to use Spring Boot Data Repositories](#how-to-use-spring-boot-data-repositories)
+    * [Conclusion](#conclusion-2)
 <!-- TOC -->
 
 ## Objective
@@ -66,7 +70,7 @@ The application will be developed using the following technologies:
         * [Spring Web](https://spring.io/guides/gs/serving-web-content/)
       * [Thymeleaf](https://www.thymeleaf.org/)
       * [Lombok](https://projectlombok.org/)
-          * [Junit](https://junit.org/junit5/)
+        * [Junit](https://junit.org/junit5/)
 * IDE [IntelliJ Idea](https://www.jetbrains.com/idea/)
     * [Eclipse](https://www.eclipse.org/)
     * [Spring Tools 4 for Eclipse](https://spring.io/tools)
@@ -135,6 +139,69 @@ database tables.
 * _Entities_ - Objects that have a unique identity and that can be stored in a database.
 * _Entity classes_ - Java classes that represent entities. They must be annotated with the `@Entity` annotation.
 
-### Conclusion:
+### Conclusion
 
 Domain modeling and entity modeling are essential skills for any software developer who works with databases.
+
+## Step 3. Repositories
+
+### Spring Boot Data Repositories**
+
+Spring Boot Data Repositories is a framework that provides a high-level abstraction for accessing data from a variety of
+data stores.
+It provides a consistent API for performing common data access operations, such as CRUD, without having to
+worry about the underlying data store implementation.
+
+**Benefits of using Spring Boot Data Repositories:**
+
+* **Increased productivity:** Spring Boot Data Repositories can help you to write less code and focus on your
+  application logic.
+* **Improved maintainability:** Spring Boot Data Repositories can help you to keep your data access code consistent and
+  easy to understand.
+* **Increased performance:** Spring Boot Data Repositories can take advantage of database-specific optimizations to
+  improve the performance of your data access code.
+
+### How to use Spring Boot Data Repositories
+
+To use Spring Boot Data Repositories, you need to annotate your entity classes with the `@Entity` annotation and your
+repository interfaces with the `@Repository` annotation. You can then use the repository methods to perform data access
+operations.
+
+**Example:**
+
+The following example shows how to use Spring Boot Data Repositories to create a repository for a `Customer` entity:
+
+```java
+
+@Entity
+public class Customer {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
+  private String name;
+
+  private String email;
+
+}
+
+@Repository
+public interface CustomerRepository extends CrudRepository<Customer, Long> {
+
+}
+```
+
+This repository provides the following methods for performing data access operations on `Customer` entities:
+
+* `save(Customer customer)`: Saves a `Customer` entity to the database.
+* `findById(Long id)`: Returns the `Customer` entity with the specified ID.
+* `findAll()`: Returns a list of all `Customer` entities.
+* `delete(Customer customer)`: Deletes the specified `Customer` entity from the database.
+
+### Conclusion
+
+Spring Boot Data Repositories is a powerful framework that can help you to simplify data access in your Spring Boot
+applications.
+It provides a consistent API for performing common data access operations, without having to worry about
+the underlying data store implementation.
