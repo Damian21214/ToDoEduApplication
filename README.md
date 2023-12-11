@@ -19,7 +19,13 @@
     * [Spring Boot Data Repositories**](#spring-boot-data-repositories)
     * [How to use Spring Boot Data Repositories](#how-to-use-spring-boot-data-repositories)
     * [Conclusion](#conclusion-2)
-  * [Step 4: Sample Data](#step-4-sample-data)
+  * [Step 4. Sample Data](#step-4-sample-data)
+  * [Step 5. Web Layer and REST in Web Applications](#step-5-web-layer-and-rest-in-web-applications)
+    * [REST](#rest)
+    * [Spring Boot Application](#spring-boot-application)
+    * [RestController](#restcontroller)
+    * [Controller](#controller)
+    * [Main differences](#main-differences)
 <!-- TOC -->
 
 ## Objective
@@ -232,5 +238,57 @@ In conclusion, embracing sample data during the development process is a best pr
 functionality testing and realistic user behavior simulations. Coupling this with `data.sql` in your Spring Boot
 application adds a layer of automation to your boilerplate routines.
 
+## Step 5. Web Layer and REST in Web Applications
 
+In the context of web applications, web layer, also known as the presentation layer, is the interface between the user
+and the application. It includes all the components related to user interaction like HTML, CSS, JavaScript, templates,
+and forms. It also includes the server-side technology that serves these client-side technologies, which is where
+controllers come in.
 
+### REST
+
+REST (REpresentational State Transfer) is an architectural style for networked hypermedia applications, primarily used
+for web services. The idea behind REST is to treat server-side resources (like data objects) as resources that can be
+created, read, updated, and deleted using standard HTTP methods.
+
+When building RESTful services, it's important to choose an appropriate client-server communication.
+REST utilizes the standard HTTP methods GET (read), POST (create), PUT/PATCH (update), and DELETE (destroy).
+In a RESTful system, URLs identify resources
+(for example, "/users" might represent a collection of users, while "/users/1" might represent a user with the ID of 1).
+
+### Spring Boot Application
+
+Spring Boot provides an opinionated view of the Spring platform and libraries, making it easy to create stand-alone,
+production-grade applications. It's designed to simplify the bootstrap and development process, aiming to make it easier
+to start up a new project.
+
+Spring Boot Applications typically involve some standard setup like application configuration, launching an application
+server, or connecting to a database. Spring Boot auto-configures these steps based on the included dependencies and
+allows us to focus more on business functionality rather than the setup.
+
+### RestController
+
+In Spring Boot, a `@RestController` is a specialized version of the controller which is a key part of the MVC paradigm.
+It's used to build RESTful web services and has `@ResponseBody` annotation included by default. This means that whatever
+value is returned by the controller methods is written directly to the HTTP response body.
+
+For example, here's a simple `@RestController`:
+In the above example, a GET request to "/hello" will return the string "Hello, World!".
+
+### Controller
+
+The `@Controller` annotation in Spring is a more traditional style controller and primarily used in combination with
+rendered views. It doesn't include `@ResponseBody` by default. Therefore, method return values are interpreted as view
+names.
+
+Here's a simple example of a `@Controller`:
+In this case, a GET request to "/hello" will return the view named "hello-view", using whatever template engine you've
+configured (like Thymeleaf or FreeMarker). The `Model` is populated with a message attribute to be accessed within the
+view.
+
+### Main differences
+
+The main difference between `@Controller` and `@RestController` lies in how the response is generated. `@Controller` is
+used when we want to return a view (typically for a traditional web application where the server generates
+HTML). `@RestController` is used when we want to return data directly to the caller (typically for a REST API that's
+machine-readable, like JSON).
