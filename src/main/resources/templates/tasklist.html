@@ -14,23 +14,19 @@
 </head>
 <body>
 <div class="container">
-    <h1 class="blue-text">To Do List</h1> <!-- Title color changed here -->
+    <h2 class="blue-text">ToDo List</h2> <!-- Title color changed here -->
 
     <div th:object="${todoTaskList}">
-        <h2>List Details</h2>
+        <h3>List Details [id: <span th:text="*{id}"></span>]</h3>
         <p><b>Title:</b> <span th:text="*{title}"></span></p>
         <p><b>Status:</b> <span th:text="*{status}"></span></p>
-        <p><b>Date Created:</b> <span th:text="*{created}"></span></p>
-        <p><b>Last Modified:</b> <span th:text="*{modified}"></span></p>
 
-        <h2>Tasks:</h2>
+        <h3>Tasks:</h3>
         <table class="striped">
             <tr>
                 <th>Title</th>
                 <th>Description</th>
                 <th>Status</th>
-                <th>Created Date</th>
-                <th>Modified Date</th>
             </tr>
             <tr th:each="task : *{tasks}">
                 <td th:text="${task.title}"></td>
@@ -38,9 +34,8 @@
                 <td><label>
                     <input th:checked="${task.status.toString()} == 'COMPLETED'" type="checkbox"/>
                     <span th:text="${task.status}"></span>
-                </label></td>
-                <td th:text="${task.created}"></td>
-                <td th:text="${task.modified}"></td>
+                </label>
+                </td>
             </tr>
         </table>
     </div>
