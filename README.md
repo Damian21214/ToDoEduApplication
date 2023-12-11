@@ -19,6 +19,7 @@
     * [Spring Boot Data Repositories**](#spring-boot-data-repositories)
     * [How to use Spring Boot Data Repositories](#how-to-use-spring-boot-data-repositories)
     * [Conclusion](#conclusion-2)
+  * [Step 4: Sample Data](#step-4-sample-data)
 <!-- TOC -->
 
 ## Objective
@@ -205,3 +206,31 @@ Spring Boot Data Repositories is a powerful framework that can help you to simpl
 applications.
 It provides a consistent API for performing common data access operations, without having to worry about
 the underlying data store implementation.
+
+## Step 4. Sample Data
+
+Sample data is useful during the development phase for several reasons.
+One is that it allows developers to test the functionality of the application more thoroughly.
+This results in an immense improvement in the robustness and accuracy of one's code, as it implies addressing edge cases
+early on in the development process.
+Sample data also assists in the simulation of user behavior, which aids in the comprehension of how users would
+interact with the application in the real world.
+
+Moreover, Spring Boot as a flexible software development framework permits us to naturally integrate sample data loaded
+from a simple SQL script.
+To implement sample data in Spring Boot application, one of the methods is to utilize a file named `data.sql` situated
+at project's root directory.
+Spring Boot automatically identifies and executes this file at the startup, enabling developers to prepare the
+application with predetermined data.
+
+Let's suppose you have two entities, `Customer` and `Product`.
+A simplified example of `data.sql` might look like this:
+Remember that the structure and commands of your SQL data script would depend upon the specific database and ORM (i.e.,
+JPA) annotations you're utilizing.
+
+In conclusion, embracing sample data during the development process is a best practice that enables effective
+functionality testing and realistic user behavior simulations. Coupling this with `data.sql` in your Spring Boot
+application adds a layer of automation to your boilerplate routines.
+
+
+
