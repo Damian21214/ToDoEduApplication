@@ -26,6 +26,7 @@
     * [RestController](#restcontroller)
     * [Controller](#controller)
     * [Main differences](#main-differences)
+  * [Step 6. Service Layer](#step-6-service-layer)
 <!-- TOC -->
 
 ## Objective
@@ -75,9 +76,9 @@ The application will be developed using the following technologies:
         * [Spring Data JPA](https://spring.io/projects/spring-data-jpa)
         * [HSQL DB](https://hsqldb.org/)
         * [Spring Web](https://spring.io/guides/gs/serving-web-content/)
-      * [Thymeleaf](https://www.thymeleaf.org/)
-      * [Lombok](https://projectlombok.org/)
-        * [Junit](https://junit.org/junit5/)
+        * [Thymeleaf](https://www.thymeleaf.org/)
+        * [Lombok](https://projectlombok.org/)
+            * [Junit](https://junit.org/junit5/)
 * IDE [IntelliJ Idea](https://www.jetbrains.com/idea/)
     * [Eclipse](https://www.eclipse.org/)
     * [Spring Tools 4 for Eclipse](https://spring.io/tools)
@@ -181,20 +182,22 @@ The following example shows how to use Spring Boot Data Repositories to create a
 ```java
 
 @Entity
-public class Customer {
+public class Customer
+{
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-  private String name;
+	private String name;
 
-  private String email;
+	private String email;
 
 }
 
 @Repository
-public interface CustomerRepository extends CrudRepository<Customer, Long> {
+public interface CustomerRepository extends CrudRepository<Customer, Long>
+{
 
 }
 ```
@@ -292,3 +295,67 @@ The main difference between `@Controller` and `@RestController` lies in how the 
 used when we want to return a view (typically for a traditional web application where the server generates
 HTML). `@RestController` is used when we want to return data directly to the caller (typically for a REST API that's
 machine-readable, like JSON).
+
+## Step 6. Service Layer
+
+The service layer, commonly known as the business logic layer, is an abstract layer within a software architecture
+pattern that specifies operation sequences, transaction procedures, and some complex business rules. In a web
+application, the service layer acts as a bridge between controllers (web) and repositories (data), applying business
+logic on data before relaying it for further actions.
+Here is a general illustration in JVM-based web application:
+
+```java
+
+@Controller
+public class ExampleController
+{
+	private final ExampleService exampleService;
+
+	public ExampleController(final ExampleService exampleService)
+	{
+		this.exampleService = exampleService;
+	}
+	
+	// HTTP handlers go here
+}
+
+@Service
+public class ExampleService
+{
+	private final ExampleRepository exampleRepository;
+
+	public ExampleService(final ExampleRepository exampleRepository)
+	{
+		this.exampleRepository = exampleRepository;
+	}
+
+	// Business rules and logic are applied here
+}
+
+@Repository
+public interface ExampleRepository extends JpaRepository<Example, Long>
+{
+    // Database operations happen here
+}
+```
+
+The `@Service `annotation in Spring Boot is a specialized form of the `@Component` annotation.
+It is used at the class level, and Spring recognizes those classes as candidates for Spring beans.
+It is part of the Spring stereotype annotations that help to clearly differentiate the roles of classes across layers in
+the application.
+It doesn't provide any additional behavior compared to `@Component`, rather, it's used for better code readability and
+understanding.
+Here is how you can define a service in Spring Boot:
+
+```java
+
+@Service
+public class ExampleService
+{
+	// Your service logic goes here
+} 
+```
+
+The above `ExampleService` is just a typical Spring bean but annotated with @Service. This annotation also allows for
+automatic detection of classes for dependency injection when annotation-based configuration and classpath scanning are
+used.
