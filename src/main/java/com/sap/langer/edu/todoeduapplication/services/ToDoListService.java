@@ -3,6 +3,7 @@ package com.sap.langer.edu.todoeduapplication.services;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import com.sap.langer.edu.todoeduapplication.domain.ToDoList;
 import com.sap.langer.edu.todoeduapplication.repositories.ToDoListRepository;
 import com.sap.langer.edu.todoeduapplication.services.dtos.ToDoListDTO;
 
@@ -21,5 +22,10 @@ public class ToDoListService
 	public ToDoListDTO getToDoList(final Long id)
 	{
 		return null;
+	}
+
+	private ToDoListDTO convertToDto(final ToDoList toDoList)
+	{
+		return modelMapper.map(toDoList, ToDoListDTO.class);
 	}
 }
