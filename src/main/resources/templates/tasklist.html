@@ -38,6 +38,14 @@
                 </td>
             </tr>
         </table>
+        <h3>Add Task</h3>
+        <form method="post" th:action="@{/html/todolist}" th:object="${toDoTask}">
+            <input id="listId" th:field="*{listId}" th:value="*{listId}" type="hidden"/>
+            <input id="title" placeholder="Enter title" required th:field="*{title}" type="text"/>
+            <input id="description" placeholder="Enter description" required th:field="*{description}" type="text"/>
+            <input id="scheduled" placeholder="Due date" th:field="*{scheduled}" type="date">
+            <input type="submit" value="Create Task">
+        </form>
     </div>
 </div>
 </body>
