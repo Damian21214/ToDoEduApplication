@@ -27,6 +27,7 @@
     * [Controller](#controller)
     * [Main differences](#main-differences)
   * [Step 6. Service Layer](#step-6-service-layer)
+  * [Step 7. REST Controller enrichment](#step-7-rest-controller-enrichment)
 <!-- TOC -->
 
 ## Objective
@@ -315,7 +316,7 @@ public class ExampleController
 	{
 		this.exampleService = exampleService;
 	}
-	
+
 	// HTTP handlers go here
 }
 
@@ -335,7 +336,7 @@ public class ExampleService
 @Repository
 public interface ExampleRepository extends JpaRepository<Example, Long>
 {
-    // Database operations happen here
+	// Database operations happen here
 }
 ```
 
@@ -359,3 +360,32 @@ public class ExampleService
 The above `ExampleService` is just a typical Spring bean but annotated with @Service. This annotation also allows for
 automatic detection of classes for dependency injection when annotation-based configuration and classpath scanning are
 used.
+
+## Step 7. REST Controller enrichment
+
+Server-side HTML rendering, AJAX, and Single Page Applications (SPA) are three different approaches to building web
+applications.
+
+### Brief comparison
+
+1. Server-side HTML rendering: In this approach, the server generates the HTML content and sends it to the client
+   whenever a request is made. The server processes the request, retrieves data from the database, and generates the
+   HTML dynamically. The entire page is then sent to the client for display. This approach is traditional and has been
+   widely used for many years.
+
+2. AJAX (Asynchronous JavaScript and XML): AJAX allows for asynchronous communication between the client and server
+   without requiring a full page reload. With AJAX, the client can make requests to the server in the background and
+   receive data in various formats, such as JSON or XML. The client-side JavaScript then updates the HTML content
+   dynamically based on the received data. This approach provides a more interactive user experience as it allows for
+   partial updates without reloading the entire page.
+
+3. Single Page Applications (SPA): SPAs are web applications that load a single HTML page initially and then dynamically
+   update the content as the user interacts with the application. SPAs rely heavily on JavaScript frameworks like React,
+   Angular, or Vue.js to handle routing, data fetching, and rendering on the client-side. The server primarily serves as
+   an API endpoint, providing data to the client as requested. SPAs offer a highly responsive and fluid user experience
+   as they minimize page reloads.
+
+Each approach has its own advantages and considerations. Server-side HTML rendering is simpler to implement and provides
+good initial page load performance. AJAX allows for partial updates and can enhance interactivity, but it requires more
+complex client-side code. SPAs provide a highly interactive and seamless user experience but can be more complex to
+develop and maintain.
