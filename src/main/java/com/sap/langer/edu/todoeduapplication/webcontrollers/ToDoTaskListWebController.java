@@ -43,6 +43,7 @@ public class ToDoTaskListWebController {
 	{
 		log.info(
 				"New task: " + toDoTask.getTitle() + " " + toDoTask.getDescription() + " " + toDoTask.getScheduled() + " for list id " + toDoTask.getListId());
+		toDoListService.addTaskToToDoList(toDoTask);
 		return "redirect:todolist/" + toDoTask.getListId();
 	}
 
