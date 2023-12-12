@@ -5,10 +5,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sap.langer.edu.todoeduapplication.domain.ToDoList;
+import com.sap.langer.edu.todoeduapplication.domain.ToDoListStatus;
 import com.sap.langer.edu.todoeduapplication.domain.ToDoStatus;
 import com.sap.langer.edu.todoeduapplication.domain.ToDoTask;
 import com.sap.langer.edu.todoeduapplication.repositories.ToDoListRepository;
 import com.sap.langer.edu.todoeduapplication.repositories.ToDoTaskRepository;
+import com.sap.langer.edu.todoeduapplication.restcontrolers.dtos.NewToDoListDTO;
 import com.sap.langer.edu.todoeduapplication.services.businessexceptions.ToDoListNotFoundException;
 import com.sap.langer.edu.todoeduapplication.services.dtos.ToDoListDTO;
 import com.sap.langer.edu.todoeduapplication.webcontrollers.formdtos.NewToDoTask;
@@ -35,6 +37,15 @@ public class ToDoListService
 	{
 		final ToDoList toDoList = toDoListRepository.findById(id).orElseThrow(() -> new ToDoListNotFoundException(id));
 		return convertToDto(toDoList);
+	}
+
+	public void createNewToDoList(final NewToDoListDTO toDoList)
+	{
+		final ToDoList newToDoList = modelMapper.map(toDoList, ToDoList.class);
+		newToDoList.setId(null);
+		newToDoList.setStatus(ToDoListStatus.CREATED);
+		final ToDoList saved = toDoListRepository.save(newToDoList);
+		log.info("Saved: " + saved);
 	}
 
 	@Transactional
