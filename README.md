@@ -28,6 +28,7 @@
     * [Main differences](#main-differences)
   * [Step 6. Service Layer](#step-6-service-layer)
   * [Step 7. REST Controller enrichment](#step-7-rest-controller-enrichment)
+      * [Brief comparison](#brief-comparison)
 <!-- TOC -->
 
 ## Objective
